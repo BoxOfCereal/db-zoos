@@ -11,7 +11,18 @@ router.get("/", (req, res) => {
     .catch(error =>
       res
         .status(500)
-        .json({ error: "The posts information could not be retrieved." })
+        .json({ error: "The zoos information could not be retrieved." })
+    );
+});
+
+router.post("/", (req, res) => {
+  const zoo = req.body;
+  db.insert(zoo)
+    .then(id => res.status(201).json(id))
+    .catch(error =>
+      res
+        .status(500)
+        .json({ error: "The zoo information could not be entered." })
     );
 });
 
