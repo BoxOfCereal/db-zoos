@@ -21,6 +21,6 @@ function insert(zoo) {
 
 function findById(id) {
   return db("zoos")
-    .where({ id })
+    .where({ id: Number(id) })
     .then(zoo => zoo);
 }
