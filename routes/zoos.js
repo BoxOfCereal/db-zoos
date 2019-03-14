@@ -26,4 +26,15 @@ router.post("/", (req, res) => {
     );
 });
 
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  db.findById(id)
+    .then(zoo => res.status(200).json(zoo))
+    .catch(error =>
+      res
+        .status(500)
+        .json({ error: "The zoo information could not be retrieved." })
+    );
+});
+
 module.exports = router;

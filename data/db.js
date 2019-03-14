@@ -4,7 +4,8 @@ const db = knex(knexConfig.development);
 
 module.exports = {
   find,
-  insert
+  insert,
+  findById
 };
 
 function find() {
@@ -16,4 +17,10 @@ function insert(zoo) {
     .insert(zoo)
     .into("zoos")
     .then(ids => ids[0]);
+}
+
+function findById(id) {
+  return db("zoos")
+    .where({ id })
+    .then(zoo => zoo);
 }
