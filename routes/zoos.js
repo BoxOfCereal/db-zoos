@@ -37,4 +37,18 @@ router.get("/:id", (req, res) => {
     );
 });
 
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const zoo = req.body;
+  db.update(id, zoo)
+    .then(count => {
+      count ? db.findById(id).then(zoo => res.status(200).json(zoo)) : null;
+    })
+    .catch(error =>
+      res
+        .status(500)
+        .json({ error: "The zoo information could not be updated." })
+    );
+});
+
 module.exports = router;
